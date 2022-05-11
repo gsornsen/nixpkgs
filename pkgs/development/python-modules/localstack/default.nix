@@ -4,6 +4,8 @@
 , boto3
 , click
 , cachetools
+, localstack-client
+, plux
 , psutil
 , python-dotenv
 , pyyaml
@@ -27,6 +29,8 @@ buildPythonPackage rec {
   propagatedBuildInputs = [ boto3
                             click
                             cachetools
+                            localstack-client
+                            plux
                             psutil
                             python-dotenv
                             pyyaml
