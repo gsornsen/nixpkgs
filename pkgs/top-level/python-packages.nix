@@ -4542,6 +4542,8 @@ in {
 
   localstack = callPackage ../development/python-modules/localstack { };
 
+  localstack-client = callPackage ../development/python-modules/localstack-client { };
+
   localzone = callPackage ../development/python-modules/localzone { };
 
   locationsharinglib = callPackage ../development/python-modules/locationsharinglib { };
