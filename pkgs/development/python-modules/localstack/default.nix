@@ -26,6 +26,13 @@ buildPythonPackage rec {
   };
 
   doCheck = false;
+  # Remove circular localstack dependency and
+  # allow package upgrades that remove Python 3.5 compatibility.
+  postPatch = ''
+    sed -r -i '/^\s*localstack-ext/d' setup.cfg
+    sed -i 's/requests>=2.20.0,<2.26/requests>=2.20.0,<=2.26/' setup.cfg
+    sed -i 's/cachetools>=3.1.1,<4.0.0/cachetools>=4.0.0/' setup.cfg
+    '';
   propagatedBuildInputs = [ boto3
                             click
                             cachetools
@@ -45,5 +52,6 @@ buildPythonPackage rec {
     description = "A fully functional local AWS cloud stack";
     homepage = "https://github.com/localstack/localstack";
     license = licenses.asl20;
+    broken = pythonOlder "3.6";
   };
 }
